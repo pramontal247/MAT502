@@ -1,0 +1,122 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+#Philemon Ramontal 
+#Final Project 
+#Research Question: Do females have a higher Literacy Rate than Males around the world? H1:u1>u2, Alternative H0:u1<u2
+#Sub Question: 
+#Data Description: This dataset represents the 125 countries around the world. It includes the data for overall literacy rate, male literacy rate and female literacy rate. I have added 2 columns (GDP, Unemplement rate) to determine if there is any correlation with the with the literacy rate.
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+```
+
+
+#Data Import
+```{r}
+library(readr)
+literacy_rate <- read_csv("literacy_rate.csv")
+lit_rate<-literacy_rate
+View(lit_rate)
+```
+#Data Import
+```{r}
+library(readr)
+gdp_improvement_rate <- read_csv("gdp_improvement_rate.csv")
+gdp<-gdp_improvement_rate
+View(gdp)
+```
+#Data Import
+```{r}
+library(readr)
+unemployment <- read_csv("unemployment.csv")
+View(unemployment)
+```
+#Data Merge
+```{r}
+lit_gdp<-merge(lit_rate, gdp, by="country")
+View(lit_gdp)
+```
+#Data merge by "Country"
+```{r}
+lit_gdp_unemploy<-merge(lit_gdp, unemployment, by="country")
+View(lit_gdp_unemploy)
+```
+#Change Column Names
+```{r}
+colnames(lit_gdp_unemploy)[colnames(lit_gdp_unemploy)== "growth_rate"] = "GDP"
+colnames(lit_gdp_unemploy)[colnames(lit_gdp_unemploy)== "unemployment_percentage"] = "employ_rate"
+colnames(lit_gdp_unemploy)[colnames(lit_gdp_unemploy) == "literacy_rate_percent_all"] = "lit_all"
+View(lit_gdp_unemploy)
+```
+#Remove N/A Column
+```{r}
+lit_gdp_unemploy$X6<-NULL
+View(lit_gdp_unemploy)
+```
+
+```{r}
+
+```
+
+
+#StepAIC to determine be variable to use for analysis
+```{r}
+lit_lm <- lm(lit_all~male_literacy_percent_rate+female_literacy_percent_rate + GDP + employ_rate, data = lit_gdp_unemploy)
+step_lit<-step(object = lit_lm, direction = "both")
+```
+#Anova of StepAIC
+```{r}
+anova(step_lit)
+```
+#T.Hypothesis Test question: females have higher literacy rate this males
+#u1 > u2 (claim)
+#H0: u1=u2
+#H1: u1>u2
+```{r}
+t.test(lit_gdp_unemploy$male_literacy_percent_rate, lit_gdp_unemploy$female_literacy_percent_rate, paired = FALSE, conf.level = 0.95)
+```
+#P-Value = 0.01422 < alpha 0.05
+#Reject Null Hypothesis 
+#There is suffieicent evidence to suppport that Females literacy rate is higher than male literacy rate. 
+#ggplot of Initally T.test
+```{r}
+ggplot(data = lit_gdp_unemploy, mapping =  aes(x=lit_gdp_unemploy$male_literacy_percent_rate, y=lit_gdp_unemploy$female_literacy_percent_rate , color = country)) + geom_point() + geom_smooth() + xlab("Male Literacy Rate") + ylab("Female Literacy Rate") + ggtitle("World Literacy Rate")
+```
+#T.test 2
+#Sub Question: Does unemployment have a significant effect on GDP ?
+#H0: U1=U2
+#H1: U1>U2 (Claim)
+```{r}
+t.test(lit_gdp_unemploy$GDP, lit_gdp_unemploy$employ_rate, paired = FALSE)
+```
+#P-Value = 1.941e-10< alpha 0.05
+#Reject the null Hypothesis
+#There is sufficient evidence to support that unemployment has a significant effect on GDP. 
+#ggplot of secondary T.test
+```{r}
+ggplot(data = lit_gdp_unemploy, mapping = aes(x=lit_gdp_unemploy$GDP, y=lit_gdp_unemploy))+geom_histogram(stat = "identity", position = "dodge") + xlab("GDP") + ylab("Unemployment Rate") + ggtitle("Unemployment vs. GDP")
+```
+#Regression test
+```{r}
+lit_lm <- lm(lit_all~male_literacy_percent_rate+female_literacy_percent_rate, lit_gdp_unemploy) 
+summary(lit_lm)
+```
+#P-value = <2e-16
+#R-Squared = 0.9932
+#Data fits this model very well being that we have a R- squared above .99
+#Very Strong Linear relationship
+#Regression test 2
+```{r}
+lit_lm1 <- lm(lit_all~GDP+employ_rate, lit_gdp_unemploy) 
+summary(lit_lm1)
+```
+#P-value = 2e-16
+#R-Squaed = 0.1454
+#Data does not fit well with model R-Squared is 0.01454 
+#Non Linear relationship
