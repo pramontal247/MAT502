@@ -2,7 +2,7 @@
 
 MAT 502 Statistical Methods
 
-Last Modified 05/20/2020
+Last Modified 07/6/2020
 
 # Problem Statement 
 
@@ -10,7 +10,7 @@ Which Sex, Male or Female has the Best Literacy Rate Around the World
 
 # Requirements
 
-Script written in R. Packages used: ``tidyverse`` ``ggplot2`` ``dplyr``
+Script written in R. Packages used: ``tidyverse`` ``ggplot2`` ``dplyr`` 
 
 # Summary
 
