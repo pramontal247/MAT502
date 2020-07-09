@@ -6,7 +6,7 @@ Last Modified 07/6/2020
 
 # Problem Statement 
 
-Which Sex, Male or Female has the Best Literacy Rate Around the World
+Which Sex, Male or Female has the highest Literacy Rate Around the World
 
 # Requirements
 
