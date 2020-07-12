@@ -10,7 +10,7 @@ Which Sex, Male or Female has the highest Literacy Rate Around the World
 
 # Requirements
 
-Script written in R. Packages used: ``tidyverse`` ``ggplot2`` ``dplyr`` 
+Script written in R. Packages used: ``tidyverse`` ``ggplot2`` ``dplyr`` ``aov``
 
 # Summary
 
