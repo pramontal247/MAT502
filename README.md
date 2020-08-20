@@ -29,4 +29,4 @@ After performing the analysis we have discovered that Females have a higher lite
 
 # Future Work 
 
-Focus on United States Verses the World. 
+Focus analysis on low income communities in the United States. Determine what can be done to improve literacy rate in those areas of the country  
