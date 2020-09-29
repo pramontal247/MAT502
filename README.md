@@ -1,6 +1,6 @@
 # World Literacy Rates By Sex 
 
-MAT 502 Statistical Methods
+Statistical Methods
 
 Last Modified 07/6/2020
 
