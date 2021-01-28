@@ -1,4 +1,4 @@
-# World Literacy Rates By Sex 
+# World Literacy Rates By Gender
 
 Statistical Methods
 
@@ -24,7 +24,7 @@ The data set contain 125 rows representing 125 countries around the world. The d
 
 # Results
 
-After performing the analysis we have discovered that Females have a higher literacy rate than men around the world. I initially ran a Step AIC in both directions to determine which variables should be used in the analysis. A linear algorithm to predict which sex had the best Literacy rate. Furthermore, the model had an R-Square of 0.99 telling me that there was a strong liner relationship in my data. A t-test was then performed to determine that p-value so the null hypothesis would be accepted or rejected. T-test reveled as p-value of 0.014 below the 0.05 threshold so this told me that we should accept the null hypothesis. 
+After performing the analysis we have discovered that Females have a higher literacy rate than men around the world. I initially ran a Step AIC in both directions to determine which variables should be used in the analysis. A linear algorithm to predict which gender had the best Literacy rate. Furthermore, the model had an R-Square of 0.99 telling me that there was a strong liner relationship in my data. A t-test was then performed to determine that p-value so the null hypothesis would be accepted or rejected. T-test reveled as p-value of 0.014 below the 0.05 threshold so this told me that we should accept the null hypothesis. 
 
 
 # Future Work 
